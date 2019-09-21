@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { WIDTH_SCREEN, TABS_WIDTH } from '../../config/constants';
+import { SCREEN_WIDTH, TABS_WIDTH } from '../../config/constants';
 import theme from '../../styles/theme';
 
 export const styles = StyleSheet.create({
@@ -35,9 +35,8 @@ export const styles = StyleSheet.create({
     },
     elevation: 2,
     zIndex: 10,
-    transform: [{ translateX: (WIDTH_SCREEN - 60) / 2 }]
+    transform: [{ translateX: (SCREEN_WIDTH - 60) / 2 }]
   },
-
   label: {
     fontSize: 11
   }

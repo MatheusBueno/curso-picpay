@@ -23,6 +23,22 @@ export default function TabBottom({
         const focused = activateRouteIndex === index;
         const tintColor = focused ? activeColor : inactiveColor;
 
+        if (index === 2) {
+          return (
+            <Fragment key={index.toString()}>
+              <View style={styles.tabButton} />
+              <Ripple
+                rippleContainerBorderRadius={50}
+                rippleColor={activeColor}
+                style={styles.selectedTabButton}
+                onPress={() => onTabPress({ route })}>
+                {renderIcon({ route, focused, tintColor: '#fff' })}
+                <Text style={[styles.label, { color: '#fff' }]}>{getLabelText({ route })}</Text>
+              </Ripple>
+            </Fragment>
+          );
+        }
+
         return (
           <Ripple
             key={index.toString()}
