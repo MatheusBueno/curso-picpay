@@ -6,7 +6,8 @@ import theme from '../../styles/theme';
 export default styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
-    height: SCREEN_HEIGHT / 3.5
+    height: SCREEN_HEIGHT / 3.5,
+    backgroundColor: theme.primaryColor
   },
   suggestText: {
     fontSize: 15,
@@ -35,6 +36,7 @@ export default styles = StyleSheet.create({
   username: {
     marginVertical: 10,
     textAlign: 'center',
-    fontSize: 13
+    fontSize: 13,
+    color: '#fff'
   }
 });
