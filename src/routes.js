@@ -9,6 +9,13 @@ import PaymentScreen from './screens/PaymentScreen/PaymentScreen';
 import NotificationScreen from './screens/NotificationScreen/NotificationScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 
+// icons
+import HomeIcon from '../assets/Inicio_ativo.svg';
+import WallerIcon from '../assets/Carteira_inativo.svg';
+import PaymentIcon from '../assets/cifrao.svg';
+import NotificaitonIcon from '../assets/notificacoes.svg';
+import SettingsIcon from '../assets/ajustes.svg';
+
 const homeStack = createBottomTabNavigator({
   HomeScreen,
   WalletScreen,
