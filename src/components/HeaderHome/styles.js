@@ -8,9 +8,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'red',
     width: '100%',
     backgroundColor: theme.lightGray,
     paddingVertical: 5
+  },
+  centerAlign: {
+    textAlign: 'center'
   }
 });
