@@ -1,3 +1,5 @@
+import { Dimensions, StyleSheet } from 'react-native';
+
 const WIDTH_SCREEN = Dimensions.get('window').width;
 const TAB_WIDTH = WIDTH_SCREEN / 4;
 

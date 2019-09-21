@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 
 import theme from '../../styles/theme';
 
-import styles from './styles';
+import { styles } from './styles';
 const WIDTH_SCREEN = Dimensions.get('window').width;
 const TAB_WIDTH = WIDTH_SCREEN / 4;
 
