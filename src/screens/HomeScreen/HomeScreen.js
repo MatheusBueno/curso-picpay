@@ -9,8 +9,6 @@ import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
-// import { Container } from './styles';
-
 export default function HomeScreen() {
   return (
     <View style={styles.safeArea}>
