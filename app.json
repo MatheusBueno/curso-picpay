@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Picpay",
+    "slug": "picpay",
+    "privacy": "public",
+    "sdkVersion": "34.0.0",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icone.png",
+    "splash": {
+      "image": "./assets/splashScreen.png",
+      "backgroundColor": "#129E54",
+      "splash.backgroundColor": "#129E54",
+      "resizeMode": "contain"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gempe.PicPay"
+    },
+    "android": {
+      "package": "com.gempe.PicPay",
+      "adaptiveIcon": {
+        "backgroundColor": "#129E54"
+      }
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+    }
+  }
+}
