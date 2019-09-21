@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { View, Dimensions, StyleSheet, Text } from 'react-native';
 import Ripple from 'react-native-material-ripple';
+import PaymentIcon from '../../../assets/cifrao.svg';
 
 import theme from '../../styles/theme';
 import { styles } from './styles';
@@ -32,7 +33,7 @@ export default function TabBottom({
                 rippleColor={activeColor}
                 style={styles.selectedTabButton}
                 onPress={() => onTabPress({ route })}>
-                {renderIcon({ route, focused, tintColor: '#fff' })}
+                <PaymentIcon fill="#fff" height={18} />
                 <Text style={[styles.label, { color: '#fff' }]}>{getLabelText({ route })}</Text>
               </Ripple>
             </Fragment>

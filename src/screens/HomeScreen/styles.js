@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { Header } from 'react-navigation-stack';
 
 import theme from '../../styles/theme';
-import { SCREEN_HEIGHT, STATUSBAR_HEIGHT, ACTIVITIES } from '../../config/contants';
+import { SCREEN_HEIGHT, STATUSBAR_HEIGHT, ACTIVITIES } from '../../config/constants';
 
 const SUGGESTED_HEIGHT = SCREEN_HEIGHT / 3.5;
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
@@ -24,5 +24,9 @@ export const styles = StyleSheet.create({
   },
   tabsContainer: {
     height: SCREEN_HEIGHT - Header.HEIGHT - STATUSBAR_HEIGHT
+  },
+  header: {
+    height: Header.HEIGHT,
+    marginTop: STATUSBAR_HEIGHT
   }
 });
