@@ -17,54 +17,60 @@ import PaymentIcon from '../assets/cifrao.svg';
 import NotificaitonIcon from '../assets/notificacoes.svg';
 import SettingsIcon from '../assets/ajustes.svg';
 import theme from './styles/theme';
+import TabBottom from './components/TabBottom/TabBottom';
 
-const homeStack = createBottomTabNavigator({
-  HomeScreen: {
-    screen: HomeScreen,
-    navigationOptions: {
-      tabBarLabel: 'Inicio',
-      tabBarIcon: ({ focused }) => (
-        <HomeIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
-      )
+const homeStack = createBottomTabNavigator(
+  {
+    HomeScreen: {
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarLabel: 'Inicio',
+        tabBarIcon: ({ focused }) => (
+          <HomeIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+        )
+      }
+    },
+    WalletScreen: {
+      screen: WalletScreen,
+      navigationOptions: {
+        tabBarLabel: 'Carteira',
+        tabBarIcon: ({ focused }) => (
+          <WallerIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+        )
+      }
+    },
+    PaymentScreen: {
+      screen: PaymentScreen,
+      navigationOptions: {
+        tabBarLabel: 'Pagar',
+        tabBarIcon: ({ focused }) => (
+          <PaymentIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+        )
+      }
+    },
+    NotificationScreen: {
+      screen: NotificationScreen,
+      navigationOptions: {
+        tabBarLabel: 'Notificações',
+        tabBarIcon: ({ focused }) => (
+          <NotificaitonIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+        )
+      }
+    },
+    SettingsScreen: {
+      screen: SettingsScreen,
+      navigationOptions: {
+        tabBarLabel: 'Ajustes',
+        tabBarIcon: ({ focused }) => (
+          <SettingsIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+        )
+      }
     }
   },
-  WalletScreen: {
-    screen: WalletScreen,
-    navigationOptions: {
-      tabBarLabel: 'Carteira',
-      tabBarIcon: ({ focused }) => (
-        <WallerIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
-      )
-    }
-  },
-  PaymentScreen: {
-    screen: PaymentScreen,
-    navigationOptions: {
-      tabBarLabel: 'Pagar',
-      tabBarIcon: ({ focused }) => (
-        <PaymentIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
-      )
-    }
-  },
-  NotificationScreen: {
-    screen: NotificationScreen,
-    navigationOptions: {
-      tabBarLabel: 'Notificações',
-      tabBarIcon: ({ focused }) => (
-        <NotificaitonIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
-      )
-    }
-  },
-  SettingsScreen: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      tabBarLabel: 'Ajustes',
-      tabBarIcon: ({ focused }) => (
-        <SettingsIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
-      )
-    }
+  {
+    tabBarComponent: TabBottom
   }
-});
+);
 
 const startStack = createStackNavigator(
   {

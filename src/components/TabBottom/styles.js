@@ -36,5 +36,9 @@ export const styles = StyleSheet.create({
     elevation: 2,
     zIndex: 10,
     transform: [{ translateX: (WIDTH_SCREEN - 60) / 2 }]
+  },
+
+  label: {
+    fontSize: 11
   }
 });

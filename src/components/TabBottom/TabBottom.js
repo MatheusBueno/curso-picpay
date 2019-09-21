@@ -3,7 +3,7 @@ import { View, Dimensions, StyleSheet, Text } from 'react-native';
 import Ripple from 'react-native-material-ripple';
 
 import theme from '../../styles/theme';
-import styles from './styles';
+import { styles } from './styles';
 
 export default function TabBottom({
   renderIcon,
@@ -15,5 +15,25 @@ export default function TabBottom({
   getAccessibilityLabel,
   navigation
 }) {
-  return <View />;
+  const { routes, index: activateRouteIndex } = navigation.state;
+
+  return (
+    <View style={styles.container}>
+      {routes.map((route, index) => {
+        const focused = activateRouteIndex === index;
+        const tintColor = focused ? activeColor : inactiveColor;
+
+        return (
+          <Ripple
+            key={index.toString()}
+            rippleColor={activeColor}
+            style={styles.tabButton}
+            onPress={() => onTabPress({ route })}>
+            {renderIcon({ route, focused, tintColor })}
+            <Text style={[styles.label, { color: tintColor }]}>{getLabelText({ route })}</Text>
+          </Ripple>
+        );
+      })}
+    </View>
+  );
 }
