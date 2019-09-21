@@ -1,3 +1,4 @@
+import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -15,13 +16,54 @@ import WallerIcon from '../assets/Carteira_inativo.svg';
 import PaymentIcon from '../assets/cifrao.svg';
 import NotificaitonIcon from '../assets/notificacoes.svg';
 import SettingsIcon from '../assets/ajustes.svg';
+import theme from './styles/theme';
 
 const homeStack = createBottomTabNavigator({
-  HomeScreen,
-  WalletScreen,
-  PaymentScreen,
-  NotificationScreen,
-  SettingsScreen
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarLabel: 'Inicio',
+      tabBarIcon: ({ focused }) => (
+        <HomeIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+      )
+    }
+  },
+  WalletScreen: {
+    screen: WalletScreen,
+    navigationOptions: {
+      tabBarLabel: 'Carteira',
+      tabBarIcon: ({ focused }) => (
+        <WallerIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+      )
+    }
+  },
+  PaymentScreen: {
+    screen: PaymentScreen,
+    navigationOptions: {
+      tabBarLabel: 'Pagar',
+      tabBarIcon: ({ focused }) => (
+        <PaymentIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+      )
+    }
+  },
+  NotificationScreen: {
+    screen: NotificationScreen,
+    navigationOptions: {
+      tabBarLabel: 'Notificações',
+      tabBarIcon: ({ focused }) => (
+        <NotificaitonIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+      )
+    }
+  },
+  SettingsScreen: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      tabBarLabel: 'Ajustes',
+      tabBarIcon: ({ focused }) => (
+        <SettingsIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
+      )
+    }
+  }
 });
 
 const startStack = createStackNavigator(
