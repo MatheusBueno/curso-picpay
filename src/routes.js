@@ -4,9 +4,17 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import StartScreen from './screens/StartScreen/StartScreen';
+import WalletScreen from './screens/WalletScreen/WalletScreen';
+import PaymentScreen from './screens/PaymentScreen/PaymentScreen';
+import NotificationScreen from './screens/NotificationScreen/NotificationScreen';
+import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 
 const homeStack = createBottomTabNavigator({
-  HomeScreen
+  HomeScreen,
+  WalletScreen,
+  PaymentScreen,
+  NotificationScreen,
+  SettingsScreen
 });
 
 const startStack = createStackNavigator(
