@@ -3,7 +3,7 @@ import { View, ScrollView, Animated } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import Ripple from 'react-native-material-ripple';
 
-import { SCREEN_HEIGHT, USER_SUGGESTIONS, ACTIVITIES } from '.././../config/constants';
+import { SUGGESTED_HEIGHT, USER_SUGGESTIONS, ACTIVITIES } from '.././../config/constants';
 import { styles } from './styles';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
@@ -11,7 +11,6 @@ import TabHome from '../../components/TabHome/TabHome';
 import theme from '../../styles/theme';
 import UserActivity from '../../components/UserActivity/UserActivity';
 
-const SUGGESTED_HEIGHT = SCREEN_HEIGHT / 3.5;
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
 export default function HomeScreen() {
@@ -49,17 +48,17 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.safeArea}>
-      <Animated.View style={{ translateY }}>
+      <View>
         <View>
           <View style={styles.header}>
             <HeaderHome />
           </View>
           <SuggestedUsers users={USER_SUGGESTIONS} />
         </View>
-        <View style={styles.tabsContainer}>
+        <Animated.View style={styles.tabsContainer}>
           <TabHome allActivities={renderAllActivities} />
-        </View>
-      </Animated.View>
+        </Animated.View>
+      </View>
     </View>
   );
 }
