@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, ScrollView, Animated } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Animated } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import Ripple from 'react-native-material-ripple';
 
@@ -10,12 +10,28 @@ import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
 import TabHome from '../../components/TabHome/TabHome';
 import theme from '../../styles/theme';
 import UserActivity from '../../components/UserActivity/UserActivity';
+import UserService from '../../services/user.service';
+import { transformBalanceInCentsToReal } from '../../utils/utils.service';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
 export default function HomeScreen({ navigation }) {
   const [scrollY] = useState(new Animated.Value(0));
   const [userCurrentBalance, setUserCurrentBalance] = useState('0');
+
+  useEffect(() => {
+    const userBalanceRef = UserService.getUserBalance();
+
+    userBalanceRef.on('value', (snapshot) => {
+      if(snapshot.exists()) {
+        setUserCurrentBalance(transformBalanceInCentsToReal(snapshot.val()));
+      }
+    })
+
+    return () => {
+      userBalanceRef.off();
+    }
+  }, [])
 
   const renderAllActivities = () => {
     return (
