@@ -76,13 +76,13 @@ export default function HomeScreen({ navigation }) {
         })}
         showsVerticalScrollIndicator={false}>
           {console.log(transferList)          }
-        {transferList.map(activity => {          
+        {transferList.map((activity,index) => {          
           return (
             <Ripple
               rippleContainerBorderRadius={10}
               rippleColor={theme.darktGray}
               style={styles.card}
-              key={activity.id}
+              key={index.toString()}
               onPress={() => console.log('')}>
               <UserActivity item={activity} showActionsButton />
             </Ripple>

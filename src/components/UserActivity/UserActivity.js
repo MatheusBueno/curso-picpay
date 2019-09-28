@@ -10,10 +10,10 @@ export default function UserActivities({ item, showActionsButton }) {
   return (
     <>
       <View style={styles.containerRow}>
-        <Image style={styles.avatar} source={item.avatar} />
+        <Image style={styles.avatar} source={{uri: item.userWhoPaid.userPhotoUrl}} />
         <Text styles={{ color: theme.dark }}>
-          <Text style={styles.userBoldText}>{item.sender}</Text> pagou a
-          <Text style={styles.userBoldText}>{` ${item.receiver}`}</Text>
+          <Text style={styles.userBoldText}>{item.userWhoPaid.userName}</Text> pagou a
+          <Text style={styles.userBoldText}>{` ${item.userWhoReceived.userName}`}</Text>
         </Text>
       </View>
       <View style={[styles.containerRow, { justifyContent: 'space-between' }]}>
