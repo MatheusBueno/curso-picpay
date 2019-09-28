@@ -6,23 +6,18 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import StartScreen from './screens/StartScreen/StartScreen';
 import WalletScreen from './screens/WalletScreen/WalletScreen';
-import PaymentScreen, {
-  PaymentNavigation
-} from './screens/PaymentScreen/PaymentScreen';
+import PaymentScreen, { PaymentNavigation } from './screens/PaymentScreen/PaymentScreen';
 import NotificationScreen from './screens/NotificationScreen/NotificationScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
-import LoginScreen, {
-  LoginNavigation
-} from './screens/LoginScreen/LoginScreen';
-import RegisterScreen, {
-  RegisterNavigation
-} from './screens/RegisterScreen/RegisterScreen';
+import LoginScreen, { LoginNavigation } from './screens/LoginScreen/LoginScreen';
+import RegisterScreen, { RegisterNavigation } from './screens/RegisterScreen/RegisterScreen';
 import TransactionFinishedScreen, {
   TransactionFinishedNavigation
 } from './screens/TransactionFinishedScreen/TransactionFinishedScreen';
 import NewTransactionScreen, {
   NewTransactionNavigation
 } from './screens/NewTransactionScreen/NewTransactionScreen';
+import SuccessTransactionScreen from './screens/SuccessTransactionScreen/SuccessTransactionScreen';
 
 // icons
 import HomeIcon from '../assets/Inicio_ativo.svg';
@@ -47,10 +42,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Inicio',
         tabBarIcon: ({ focused }) => (
-          <HomeIcon
-            fill={focused ? theme.primaryDarkColor : theme.textGray}
-            height={18}
-          />
+          <HomeIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
         )
       }
     },
@@ -59,10 +51,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Carteira',
         tabBarIcon: ({ focused }) => (
-          <WallerIcon
-            fill={focused ? theme.primaryDarkColor : theme.textGray}
-            height={18}
-          />
+          <WallerIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
         )
       }
     },
@@ -71,10 +60,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Pagar',
         tabBarIcon: ({ focused }) => (
-          <PaymentIcon
-            fill={focused ? theme.primaryDarkColor : theme.textGray}
-            height={18}
-          />
+          <PaymentIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
         )
       }
     },
@@ -83,10 +69,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Notificações',
         tabBarIcon: ({ focused }) => (
-          <NotificaitonIcon
-            fill={focused ? theme.primaryDarkColor : theme.textGray}
-            height={18}
-          />
+          <NotificaitonIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
         )
       }
     },
@@ -95,10 +78,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'Ajustes',
         tabBarIcon: ({ focused }) => (
-          <SettingsIcon
-            fill={focused ? theme.primaryDarkColor : theme.textGray}
-            height={18}
-          />
+          <SettingsIcon fill={focused ? theme.primaryDarkColor : theme.textGray} height={18} />
         )
       }
     }
@@ -122,6 +102,10 @@ const homeStack = createStackNavigator({
   NewTransaction: {
     screen: NewTransactionScreen,
     navigationOptions: NewTransactionNavigation
+  },
+  SuccessTransaction: {
+    screen: SuccessTransactionScreen,
+    navigationOptions: { header: null }
   }
 });
 
