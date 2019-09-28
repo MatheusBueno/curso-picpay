@@ -7,6 +7,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
 
 import theme from '../../styles/theme';
+import PaymentService from '../../services/payment.service';
+import LoadingModal from '../../components/LoadingModal/LoadingModal';
 
 export function NewTransactionNavigation() {
   return {
@@ -23,16 +25,31 @@ export function NewTransactionNavigation() {
 export default function NewTransactionScreen({ navigation }) {
   const [paymentValue, setPaymentValue] = useState(0);
   const [message, setMessage] = useState(undefined);
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
-  const avatar = navigation.getParam('avatar');
-  const username = navigation.getParam('username');
+  const user = navigation.getParam('user');
+
+  const createPayment = async () => {
+    setPaymentLoading(true);
+    const newPayment = {};
+
+    try {
+      await PaymentService.createPayment(newPayment);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log('Finalizou');
+      
+      setPaymentLoading(false);
+    }
+  }
 
   renderUser = () => {
     return (
       <View style={styles.userContent}>
-        <Image style={styles.senderPhoto} source={avatar} />
+        <Image style={styles.senderPhoto} source={{ uri: user.userPhotoUrl }} />
         <View>
-          <Text> {username} </Text>
+          <Text> {user.userNickname} </Text>
           <TextInputMask
             autoFocus
             style={styles.money}
@@ -53,6 +70,8 @@ export default function NewTransactionScreen({ navigation }) {
   };
 
   return (
+    <>
+    <LoadingModal isVisible={paymentLoading} />
     <KeyboardAvoidingView
       keyboardVerticalOffset={Header.HEIGHT + Constants.statusBarHeight}
       style={{ flex: 1, justifyContent: 'space-between' }}
@@ -68,7 +87,7 @@ export default function NewTransactionScreen({ navigation }) {
         />
       </View>
       <View style={styles.bottomInput}>
-        <Ripple rippleContainerBorderRadius={30} rippleColor={theme.dark} style={styles.payButton}>
+        <Ripple onPress={createPayment} rippleContainerBorderRadius={30} rippleColor={theme.dark} style={styles.payButton}>
           <LinearGradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
@@ -94,6 +113,7 @@ export default function NewTransactionScreen({ navigation }) {
         </Ripple>
       </View>
     </KeyboardAvoidingView>
+    </>
   );
 }
 
