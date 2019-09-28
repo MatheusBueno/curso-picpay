@@ -27,6 +27,7 @@ import NotificaitonIcon from '../assets/notificacoes.svg';
 import SettingsIcon from '../assets/ajustes.svg';
 import theme from './styles/theme';
 import TabBottom from './components/TabBottom/TabBottom';
+import MyCodeScreen from './screens/MyCodeScreen/MyCodeScreen';
 
 const PaymentStack = createStackNavigator({
   Payment: {
@@ -88,6 +89,16 @@ const homeBottomTabStack = createBottomTabNavigator(
   }
 );
 
+const QrCodeBottomTab = createBottomTabNavigator({
+  myCode: {
+    screen: MyCodeScreen,
+    navigationOptions: {
+      tabBarIcon: null,
+      tabBarLabel: 'Meu código'
+    }
+  }
+});
+
 const homeStack = createStackNavigator({
   homeBottomTabStack: {
     screen: homeBottomTabStack,
@@ -105,6 +116,10 @@ const homeStack = createStackNavigator({
   },
   SuccessTransaction: {
     screen: SuccessTransactionScreen,
+    navigationOptions: { header: null }
+  },
+  QrCodeBottomTab: {
+    screen: QrCodeBottomTab,
     navigationOptions: { header: null }
   }
 });
