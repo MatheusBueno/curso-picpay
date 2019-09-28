@@ -13,7 +13,7 @@ import UserActivity from '../../components/UserActivity/UserActivity';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [scrollY] = useState(new Animated.Value(0));
   const [userCurrentBalance, setUserCurrentBalance] = useState('0');
 
@@ -41,6 +41,10 @@ export default function HomeScreen() {
     );
   };
 
+  const sentToQrCode = () => {
+    navigation.navigate('QrCodeBottomTab');
+  };
+
   const translateY = scrollY.interpolate({
     inputRange: [0, HIDE_HEIGHT + 80],
     outputRange: [0, -HIDE_HEIGHT],
@@ -52,7 +56,7 @@ export default function HomeScreen() {
       <Animated.View style={{ translateY }}>
         <View>
           <View style={styles.header}>
-            <HeaderHome userCurrentBalance={userCurrentBalance} />
+            <HeaderHome userCurrentBalance={userCurrentBalance} sentToQrCode={sentToQrCode} />
           </View>
           <SuggestedUsers users={USER_SUGGESTIONS} />
         </View>

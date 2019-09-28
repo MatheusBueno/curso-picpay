@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { TextMask } from 'react-native-masked-text';
 
 import { styles } from './styles';
@@ -7,10 +7,12 @@ import QrcodeIcon from '../../../assets/qrcode.svg';
 import AddUser from '../../../assets/Adicionar_amigo.svg';
 import theme from '../../styles/theme';
 
-export default function HeaderHome({ userCurrentBalance }) {
+export default function HeaderHome({ userCurrentBalance, sentToQrCode }) {
   return (
     <View style={styles.container}>
-      <QrcodeIcon fill={theme.primaryColor} height={27} />
+      <TouchableOpacity onPress={sentToQrCode}>
+        <QrcodeIcon fill={theme.primaryColor} height={27} />
+      </TouchableOpacity>
       <View>
         <Text style={styles.centerAlign}>Meu saldo</Text>
         <TextMask

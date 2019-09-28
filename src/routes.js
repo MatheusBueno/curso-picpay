@@ -28,6 +28,7 @@ import SettingsIcon from '../assets/ajustes.svg';
 import theme from './styles/theme';
 import TabBottom from './components/TabBottom/TabBottom';
 import MyCodeScreen from './screens/MyCodeScreen/MyCodeScreen';
+import ScannCodeScreen from './screens/ScannCodeScreen/ScannCodeScreen';
 
 const PaymentStack = createStackNavigator({
   Payment: {
@@ -96,6 +97,13 @@ const QrCodeBottomTab = createBottomTabNavigator({
       tabBarIcon: null,
       tabBarLabel: 'Meu código'
     }
+  },
+  scannCode: {
+    screen: ScannCodeScreen,
+    navigationOptions: {
+      tabBarIcon: null,
+      tabBarLabel: 'Escanear código'
+    }
   }
 });
 
@@ -139,9 +147,14 @@ const startStack = createStackNavigator({
   }
 });
 
-const AppNavigator = createSwitchNavigator({
-  startStack,
-  homeStack
-});
+const AppNavigator = createSwitchNavigator(
+  {
+    startStack,
+    homeStack
+  },
+  {
+    initialRouteName: 'homeStack'
+  }
+);
 
 export default Routes = createAppContainer(AppNavigator);
