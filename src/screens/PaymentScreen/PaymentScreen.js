@@ -6,11 +6,7 @@ import Money from '../../../assets/cifrao.svg';
 import theme from '../../styles/theme';
 import Qrcode from '../../../assets/qrcode.svg';
 import Contact from '../../components/Contact/Contact';
-import {
-  CONTACTS,
-  SCREEN_WIDTH,
-  USER_SUGGESTIONS
-} from '../../config/constants';
+import { CONTACTS, SCREEN_WIDTH, USER_SUGGESTIONS } from '../../config/constants';
 import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
 import { backgroundContainer } from '../../styles/styles';
 
@@ -24,7 +20,7 @@ const Header = ({ navigation }) => {
   return (
     <View style={styles.searchContainer}>
       <TextInput
-        placeholder='A quem você quer pagar?'
+        placeholder="A quem você quer pagar?"
         style={styles.searchInput}
         value={search}
         onChangeText={text => setSearch(text)}
@@ -41,24 +37,6 @@ export function PaymentNavigation({ navigation }) {
       elevation: 1
     },
     headerLeft: <Qrcode fill={theme.primaryColor} height={28} />
-  };
-}
-
-export function PaymentTabNavigation() {
-  return {
-    tabBarLabel: 'Pagar',
-    labelContainer: {
-      position: 'absolute',
-      height: 400
-    },
-    tabBarIcon: ({ focused }) => (
-      <View style={styles.circle}>
-        <Money
-          fill={focused ? theme.primaryDarkColor : '#BBBBBB'}
-          height={18}
-        />
-      </View>
-    )
   };
 }
 
@@ -80,8 +58,7 @@ export default function PaymentScreen({ navigation }) {
         <FlatList
           data={CONTACTS}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => <Contact item={item} />}
-        ></FlatList>
+          renderItem={({ item }) => <Contact item={item} />}></FlatList>
       </View>
     </View>
   );

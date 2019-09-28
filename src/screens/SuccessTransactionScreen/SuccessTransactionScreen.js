@@ -2,6 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['ReactNative.NativeModules.LottieAnimationView.getConstants']);
+
 export default function SuccessTransactionScreen({ navigation }) {
   return (
     <View style={styles.container}>
