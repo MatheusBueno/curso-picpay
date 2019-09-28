@@ -44,13 +44,15 @@ export default function HomeScreen({ navigation }) {
     const transferListRef = TransferService.getAllTransferences();
     transferListRef.on('value', snapshot => {
       const allTransferences  = transformTrasnferListInArray(snapshot.val());
+      console.log(allTransferences);
+      
       setTransferList(allTransferences);
     })
 
     return () => {
       transferListRef.off();
     }
-  });
+  }, []);
 
   const getUserList = async() => {
     try {
@@ -73,7 +75,8 @@ export default function HomeScreen({ navigation }) {
           useNativeDriver: true
         })}
         showsVerticalScrollIndicator={false}>
-        {ACTIVITIES.map(activity => {
+          {console.log(transferList)          }
+        {transferList.map(activity => {          
           return (
             <Ripple
               rippleContainerBorderRadius={10}
@@ -112,9 +115,14 @@ export default function HomeScreen({ navigation }) {
           </View>
           <SuggestedUsers users={userList} sendToNewTransference={sendToNewTransference} />
         </View>
-        <View style={styles.tabsContainer}>
-          <TabHome allActivities={renderAllActivities} />
-        </View>
+        {
+          transferList.length > 0 && (
+            <View style={styles.tabsContainer}>
+            <TabHome allActivities={renderAllActivities} />
+          </View>
+          )
+        }
+      
       </Animated.View>
     </View>
   );

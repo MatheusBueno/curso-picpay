@@ -18,7 +18,7 @@ export default function UserActivities({ item, showActionsButton }) {
       </View>
       <View style={[styles.containerRow, { justifyContent: 'space-between' }]}>
         <View style={styles.containerRow}>
-          <Text style={styles.transferenceValue}> R$ {item.value} </Text>
+          <Text style={styles.transferenceValue}> R$ {item.paymentAmountInCents} </Text>
           <Public fill={theme.textGray} height={11} />
           <Text
             style={{
