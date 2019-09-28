@@ -4,6 +4,9 @@ import { View, KeyboardAvoidingView } from 'react-native';
 import Input from '../../components/Input/Input';
 import theme from '../../styles/theme';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import AuthService from '../../services/authentication.service';
+import UserClass from '../../classes/user.class';
+import UserService from '../../services/user.service';
 
 export function RegisterNavigation() {
   return {
@@ -21,6 +24,19 @@ export default function RegisterScreen({ navigation }) {
   const [name, setname] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const registerUser = async () => {
+    try {
+      const { user } = await AuthService.registerUser(email, password);
+      const newUser = new UserClass(email, name, name, '');
+
+      await UserService.createUserInUsersList(user.uid, newUser);
+
+      navigation.navigate('HomeScreen');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={{ flex: 1, paddingHorizontal: 15 }}>
@@ -53,7 +69,7 @@ export default function RegisterScreen({ navigation }) {
           unfocusedColor={theme.darktGray}
         />
         <PrimaryButton
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={registerUser}
           label="Criar conta"
           backgroundColor={theme.primaryColor}
         />

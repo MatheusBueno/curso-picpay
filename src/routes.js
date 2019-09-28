@@ -18,6 +18,7 @@ import NewTransactionScreen, {
   NewTransactionNavigation
 } from './screens/NewTransactionScreen/NewTransactionScreen';
 import SuccessTransactionScreen from './screens/SuccessTransactionScreen/SuccessTransactionScreen';
+import RedirectScreen from './screens/RedirectScreen/RedirectScreen';
 
 // icons
 import HomeIcon from '../assets/Inicio_ativo.svg';
@@ -148,6 +149,7 @@ const startStack = createStackNavigator({
 });
 
 const AppNavigator = createSwitchNavigator({
+  RedirectScreen,
   startStack,
   homeStack
 });
