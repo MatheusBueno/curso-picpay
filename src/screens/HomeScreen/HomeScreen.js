@@ -13,6 +13,7 @@ import UserActivity from '../../components/UserActivity/UserActivity';
 import UserService from '../../services/user.service';
 import { transformBalanceInCentsToReal, transformUserListInArray, transformTrasnferListInArray } from '../../utils/utils.service';
 import TransferService from '../../services/transfer.service';
+import AuthService from '../../services/authentication.service';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
@@ -21,6 +22,7 @@ export default function HomeScreen({ navigation }) {
   const [userCurrentBalance, setUserCurrentBalance] = useState('0');
   const [userList, setUserList] = useState([]);
   const [transferList, setTransferList] = useState([]);
+  const [myTransferList, setMyTransferList] = useState([]);
 
   useEffect(() => {
     const userBalanceRef = UserService.getUserBalance();
@@ -45,7 +47,9 @@ export default function HomeScreen({ navigation }) {
     transferListRef.on('value', snapshot => {
       const allTransferences  = transformTrasnferListInArray(snapshot.val());
       console.log(allTransferences);
+      const myTransferList = allTransferences.filter(transfer => transfer.userWhoPaid.userId === AuthService.userKey);
       
+      setMyTransferList(myTransferList)
       setTransferList(allTransferences);
     })
 
@@ -67,7 +71,7 @@ export default function HomeScreen({ navigation }) {
     }
   }
 
-  const renderAllActivities = () => {
+  const renderAllActivities = (myList) => {
     return (
       <Animated.ScrollView
         scrollEventThrottle={16}
@@ -75,8 +79,8 @@ export default function HomeScreen({ navigation }) {
           useNativeDriver: true
         })}
         showsVerticalScrollIndicator={false}>
-          {console.log(transferList)          }
-        {transferList.map((activity,index) => {          
+          {console.log(myList)          }
+        {myList.map((activity,index) => {          
           return (
             <Ripple
               rippleContainerBorderRadius={10}
@@ -118,7 +122,10 @@ export default function HomeScreen({ navigation }) {
         {
           transferList.length > 0 && (
             <View style={styles.tabsContainer}>
-            <TabHome allActivities={renderAllActivities} />
+            <TabHome 
+              allActivities={ () => renderAllActivities(transferList)} 
+              myActivities={() => renderAllActivities(myTransferList)}
+            />
           </View>
           )
         }

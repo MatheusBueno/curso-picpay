@@ -71,7 +71,7 @@ export default class TabViewExample extends React.Component {
 
   renderScene = SceneMap({
     allActivities: this.props.allActivities,
-    myActivities: this.props.allActivities
+    myActivities: this.props.myActivities
   });
 
   render() {
