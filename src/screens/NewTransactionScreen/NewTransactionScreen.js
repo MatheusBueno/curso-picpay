@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, TextInput, Image, KeyboardAvoidingView } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { Header } from 'react-navigation-stack';
@@ -27,9 +27,10 @@ export function NewTransactionNavigation() {
 
 export default function NewTransactionScreen({ navigation }) {
   const [paymentValue, setPaymentValue] = useState(0);
-  const [message, setMessage] = useState(undefined);
+  const [message, setMessage] = useState('');
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [ currentUserPublic, setCurrentUserPublic] = useState(undefined);
+  const moneyField = useRef();
 
   const user = navigation.getParam('user');
 
@@ -55,14 +56,18 @@ export default function NewTransactionScreen({ navigation }) {
       userPhotoUrl: user.userPhotoUrl
     };
 
-    const newPayment = new PaymentClass(
-      transformBalanceInRealToCents(paymentValue),
-      message,
-      currentUserPublic,
-      userReciver
-    );
+    delete currentUserPublic.userEmail;   
 
     try {
+      const newPayment = new PaymentClass(
+        transformBalanceInRealToCents(moneyField.current.getRawValue()),
+        message,
+        currentUserPublic,
+        userReciver
+      );
+  
+      console.log(JSON.stringify(newPayment));
+      
       await PaymentService.createPayment(newPayment);
 
       navigation.navigate('SuccessTransaction');
@@ -84,7 +89,9 @@ export default function NewTransactionScreen({ navigation }) {
             style={styles.money}
             type={'money'}
             value={paymentValue}
-            onChangeText={value => setPaymentValue(value)}
+            onChangeText={value => {              
+              setPaymentValue(value)
+            }}
             options={{
               precision: 2,
               separator: ',',
@@ -92,6 +99,7 @@ export default function NewTransactionScreen({ navigation }) {
               unit: 'R$',
               suffixUnit: ''
             }}
+            ref={moneyField}
           />
         </View>
       </View>
