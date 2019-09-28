@@ -15,6 +15,7 @@ const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
 export default function HomeScreen() {
   const [scrollY] = useState(new Animated.Value(0));
+  const [userCurrentBalance, setUserCurrentBalance] = useState('0');
 
   const renderAllActivities = () => {
     return (
@@ -51,7 +52,7 @@ export default function HomeScreen() {
       <Animated.View style={{ translateY }}>
         <View>
           <View style={styles.header}>
-            <HeaderHome />
+            <HeaderHome userCurrentBalance={userCurrentBalance} />
           </View>
           <SuggestedUsers users={USER_SUGGESTIONS} />
         </View>
