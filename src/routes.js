@@ -147,14 +147,9 @@ const startStack = createStackNavigator({
   }
 });
 
-const AppNavigator = createSwitchNavigator(
-  {
-    startStack,
-    homeStack
-  },
-  {
-    initialRouteName: 'homeStack'
-  }
-);
+const AppNavigator = createSwitchNavigator({
+  startStack,
+  homeStack
+});
 
 export default Routes = createAppContainer(AppNavigator);
