@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TextInput, Image, KeyboardAvoidingView } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { Header } from 'react-navigation-stack';
@@ -11,6 +11,7 @@ import PaymentService from '../../services/payment.service';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
 import PaymentClass from '../../classes/payment.class';
 import { transformBalanceInRealToCents } from '../../utils/utils.service';
+import userService from '../../services/user.service';
 
 export function NewTransactionNavigation() {
   return {
@@ -28,8 +29,22 @@ export default function NewTransactionScreen({ navigation }) {
   const [paymentValue, setPaymentValue] = useState(0);
   const [message, setMessage] = useState(undefined);
   const [paymentLoading, setPaymentLoading] = useState(false);
+  const [ currentUserPublic, setCurrentUserPublic] = useState(undefined);
 
   const user = navigation.getParam('user');
+
+  useEffect(() => {
+    const getCurrentUserPublicData = async () => {
+      try {
+        const publicUserData = await userService.getUserPublicData();
+        setCurrentUserPublic(publicUserData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getCurrentUserPublicData();
+  }, [])
 
   const createPayment = async () => {
     setPaymentLoading(true);
@@ -43,7 +58,7 @@ export default function NewTransactionScreen({ navigation }) {
     const newPayment = new PaymentClass(
       transformBalanceInRealToCents(paymentValue),
       message,
-      {},
+      currentUserPublic,
       userReciver
     );
 
