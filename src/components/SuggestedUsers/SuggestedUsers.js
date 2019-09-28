@@ -4,7 +4,7 @@ import Ripple from 'react-native-material-ripple';
 
 import styles from './styles';
 
-export default function SuggestedUsers({ users, isBackgroundGray }) {
+export default function SuggestedUsers({ users, isBackgroundGray, sendToNewTransference }) {
   return (
     <View
       style={[
@@ -25,8 +25,8 @@ export default function SuggestedUsers({ users, isBackgroundGray }) {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {users.map(user => {
           return (
-            <Ripple key={user.id} style={styles.user} onPress={() => console.log('user')}>
-              <Image style={styles.avatar} source={user.avatar} />
+            <Ripple key={user.key} style={styles.user} onPress={() => sendToNewTransference(user) }>
+              <Image style={styles.avatar} source={{ uri: user.userPhotoUrl }} />
               <Text
                 style={[
                   styles.username,
@@ -34,7 +34,7 @@ export default function SuggestedUsers({ users, isBackgroundGray }) {
                     color: isBackgroundGray ? theme.dark : theme.secondaryColor
                   }
                 ]}>
-                {user.username}
+                {user.userNickname}
               </Text>
             </Ripple>
           );

@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
   user: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     width: 70,
     marginHorizontal: 8,

@@ -85,6 +85,10 @@ export default function HomeScreen({ navigation }) {
     extrapolate: 'clamp'
   });
 
+  const sendToNewTransference = (user) => {
+    navigation.navigate('NewTransaction', { user });
+  }
+
   return (
     <View style={styles.safeArea}>
       <Animated.View style={{ translateY }}>
@@ -92,7 +96,7 @@ export default function HomeScreen({ navigation }) {
           <View style={styles.header}>
             <HeaderHome userCurrentBalance={userCurrentBalance} sentToQrCode={sentToQrCode} />
           </View>
-          <SuggestedUsers users={USER_SUGGESTIONS} />
+          <SuggestedUsers users={userList} sendToNewTransference={sendToNewTransference} />
         </View>
         <View style={styles.tabsContainer}>
           <TabHome allActivities={renderAllActivities} />
