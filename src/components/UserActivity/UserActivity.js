@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
+import { TextMask } from 'react-native-masked-text';
 
 import Like from '../../../assets/Like_ativo.svg';
 import Comments from '../../../assets/Comentarios.svg';
 import Public from '../../../assets/public.svg';
 import theme from '../../styles/theme';
+import { transformBalanceInCentsToReal } from '../../utils/utils.service'
 
 export default function UserActivities({ item, showActionsButton }) {
   return (
@@ -18,7 +20,18 @@ export default function UserActivities({ item, showActionsButton }) {
       </View>
       <View style={[styles.containerRow, { justifyContent: 'space-between' }]}>
         <View style={styles.containerRow}>
-          <Text style={styles.transferenceValue}> R$ {item.paymentAmountInCents} </Text>
+        <TextMask
+          style={styles.transferenceValue}
+          value={transformBalanceInCentsToReal(item.paymentAmountInCents)}
+          type={'money'}
+          options={{
+            precision: 2,
+            separator: ',',
+            delimiter: '.',
+            unit: 'R$',
+            suffixUnit: ''
+          }}
+        />
           <Public fill={theme.textGray} height={11} />
           <Text
             style={{
