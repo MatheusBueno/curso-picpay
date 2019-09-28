@@ -49,11 +49,11 @@ export default function HomeScreen() {
     );
   };
 
-  const translateY = scrollY.interpolate({
-    inputRange: [0, HIDE_HEIGHT + 80],
-    outputRange: [0, -HIDE_HEIGHT],
-    extrapolate: 'clamp'
-  });
+  // const translateY = scrollY.interpolate({
+  //   inputRange: [0, HIDE_HEIGHT + 80],
+  //   outputRange: [0, -HIDE_HEIGHT],
+  //   extrapolate: 'clamp'
+  // });
 
   return (
     <View style={styles.safeArea}>

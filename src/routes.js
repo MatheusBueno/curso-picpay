@@ -6,7 +6,9 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import StartScreen from './screens/StartScreen/StartScreen';
 import WalletScreen from './screens/WalletScreen/WalletScreen';
-import PaymentScreen from './screens/PaymentScreen/PaymentScreen';
+import PaymentScreen, {
+  PaymentNavigation
+} from './screens/PaymentScreen/PaymentScreen';
 import NotificationScreen from './screens/NotificationScreen/NotificationScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import LoginScreen, {
@@ -30,6 +32,13 @@ import NotificaitonIcon from '../assets/notificacoes.svg';
 import SettingsIcon from '../assets/ajustes.svg';
 import theme from './styles/theme';
 import TabBottom from './components/TabBottom/TabBottom';
+
+const PaymentStack = createStackNavigator({
+  Payment: {
+    screen: PaymentScreen,
+    navigationOptions: PaymentNavigation
+  }
+});
 
 const homeBottomTabStack = createBottomTabNavigator(
   {
@@ -58,7 +67,7 @@ const homeBottomTabStack = createBottomTabNavigator(
       }
     },
     PaymentScreen: {
-      screen: PaymentScreen,
+      screen: PaymentStack,
       navigationOptions: {
         tabBarLabel: 'Pagar',
         tabBarIcon: ({ focused }) => (

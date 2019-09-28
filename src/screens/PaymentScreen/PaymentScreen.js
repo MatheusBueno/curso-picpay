@@ -6,7 +6,11 @@ import Money from '../../../assets/cifrao.svg';
 import theme from '../../styles/theme';
 import Qrcode from '../../../assets/qrcode.svg';
 import Contact from '../../components/Contact/Contact';
-import { CONTACTS, SCREEN_WIDTH } from '../../config/constants';
+import {
+  CONTACTS,
+  SCREEN_WIDTH,
+  USER_SUGGESTIONS
+} from '../../config/constants';
 import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
 import { backgroundContainer } from '../../styles/styles';
 
@@ -67,6 +71,7 @@ export default function PaymentScreen({ navigation }) {
     <View style={backgroundContainer}>
       <SuggestedUsers
         isBackgroundGray
+        users={USER_SUGGESTIONS}
         sendToNewTransaction={sendToNewTransaction}
       />
       <View style={styles.divider} />
