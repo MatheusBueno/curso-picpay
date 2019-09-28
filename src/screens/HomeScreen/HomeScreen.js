@@ -3,7 +3,11 @@ import { View, ScrollView, Animated } from 'react-native';
 import { Header } from 'react-navigation-stack';
 import Ripple from 'react-native-material-ripple';
 
-import { SUGGESTED_HEIGHT, USER_SUGGESTIONS, ACTIVITIES } from '.././../config/constants';
+import {
+  SUGGESTED_HEIGHT,
+  USER_SUGGESTIONS,
+  ACTIVITIES
+} from '.././../config/constants';
 import { styles } from './styles';
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import SuggestedUsers from '../../components/SuggestedUsers/SuggestedUsers';
@@ -20,10 +24,14 @@ export default function HomeScreen() {
     return (
       <Animated.ScrollView
         scrollEventThrottle={16}
-        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
-          useNativeDriver: true
-        })}
-        showsVerticalScrollIndicator={false}>
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          {
+            useNativeDriver: true
+          }
+        )}
+        showsVerticalScrollIndicator={false}
+      >
         {ACTIVITIES.map(activity => {
           return (
             <Ripple
@@ -31,7 +39,8 @@ export default function HomeScreen() {
               rippleColor={theme.darktGray}
               style={styles.card}
               key={activity.id}
-              onPress={() => console.log('')}>
+              onPress={() => console.log('')}
+            >
               <UserActivity item={activity} showActionsButton />
             </Ripple>
           );

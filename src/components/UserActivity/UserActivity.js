@@ -24,7 +24,8 @@ export default function UserActivities({ item, showActionsButton }) {
             style={{
               color: theme.textGray,
               fontSize: 12
-            }}>
+            }}
+          >
             5 dias atrás
           </Text>
         </View>
