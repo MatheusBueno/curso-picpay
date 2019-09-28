@@ -11,13 +11,14 @@ import TabHome from '../../components/TabHome/TabHome';
 import theme from '../../styles/theme';
 import UserActivity from '../../components/UserActivity/UserActivity';
 import UserService from '../../services/user.service';
-import { transformBalanceInCentsToReal } from '../../utils/utils.service';
+import { transformBalanceInCentsToReal, transformUserListInArray } from '../../utils/utils.service';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
 export default function HomeScreen({ navigation }) {
   const [scrollY] = useState(new Animated.Value(0));
   const [userCurrentBalance, setUserCurrentBalance] = useState('0');
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
     const userBalanceRef = UserService.getUserBalance();
@@ -31,7 +32,24 @@ export default function HomeScreen({ navigation }) {
     return () => {
       userBalanceRef.off();
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    getUserList();
+  }, []);
+
+  const getUserList = async() => {
+    try {
+      const userList = await UserService.getUserList();
+      const userListOnlyPublic = transformUserListInArray(userList);
+      console.log(userListOnlyPublic);
+      
+      setUserList(userListOnlyPublic);
+    } catch (error) {
+      console.log('Error :(', error);
+      
+    }
+  }
 
   const renderAllActivities = () => {
     return (
