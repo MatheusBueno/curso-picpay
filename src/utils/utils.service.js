@@ -18,3 +18,15 @@ export function transformUserListInArray(users) {
 
   return userList;
 }
+
+export function transformTrasnferListInArray(transfers) {
+  const transfersKeys = Object.keys(transfers);
+  const transferList = [];
+
+  transfersKeys.forEach(key => {
+
+    transferList.push(transfers[key]);
+  });
+
+  return transferList;
+}

@@ -11,7 +11,8 @@ import TabHome from '../../components/TabHome/TabHome';
 import theme from '../../styles/theme';
 import UserActivity from '../../components/UserActivity/UserActivity';
 import UserService from '../../services/user.service';
-import { transformBalanceInCentsToReal, transformUserListInArray } from '../../utils/utils.service';
+import { transformBalanceInCentsToReal, transformUserListInArray, transformTrasnferListInArray } from '../../utils/utils.service';
+import TransferService from '../../services/transfer.service';
 
 const HIDE_HEIGHT = SUGGESTED_HEIGHT + Header.HEIGHT;
 
@@ -19,6 +20,7 @@ export default function HomeScreen({ navigation }) {
   const [scrollY] = useState(new Animated.Value(0));
   const [userCurrentBalance, setUserCurrentBalance] = useState('0');
   const [userList, setUserList] = useState([]);
+  const [transferList, setTransferList] = useState([]);
 
   useEffect(() => {
     const userBalanceRef = UserService.getUserBalance();
@@ -37,6 +39,18 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     getUserList();
   }, []);
+
+  useEffect(() => {
+    const transferListRef = TransferService.getAllTransferences();
+    transferListRef.on('value', snapshot => {
+      const allTransferences  = transformTrasnferListInArray(snapshot.val());
+      setTransferList(allTransferences);
+    })
+
+    return () => {
+      transferListRef.off();
+    }
+  });
 
   const getUserList = async() => {
     try {
