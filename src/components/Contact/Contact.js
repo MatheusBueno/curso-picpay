@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   profilePhoto: {
     height: 50,
     width: 50,
-    borderRadius: 50
+    borderRadius: 25
   },
 
   contactBox: {
