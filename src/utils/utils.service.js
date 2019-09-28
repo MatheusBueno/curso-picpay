@@ -2,6 +2,10 @@ export function transformBalanceInCentsToReal(balance) {
   return balance /100;
 }
 
+export function transformBalanceInRealToCents(balance) {
+  return balance * 100;
+}
+
 export function transformUserListInArray(users) {
   const usersKeys = Object.keys(users);
   const userList = [];

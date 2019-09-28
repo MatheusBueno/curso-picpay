@@ -9,6 +9,8 @@ import Constants from 'expo-constants';
 import theme from '../../styles/theme';
 import PaymentService from '../../services/payment.service';
 import LoadingModal from '../../components/LoadingModal/LoadingModal';
+import PaymentClass from '../../classes/payment.class';
+import { transformBalanceInRealToCents } from '../../utils/utils.service';
 
 export function NewTransactionNavigation() {
   return {
@@ -31,15 +33,27 @@ export default function NewTransactionScreen({ navigation }) {
 
   const createPayment = async () => {
     setPaymentLoading(true);
-    const newPayment = {};
+    const userReciver = {
+      userId: user.key,
+      userName: user.userName,
+      userNickname: user.userNickname,
+      userPhotoUrl: user.userPhotoUrl
+    };
+
+    const newPayment = new PaymentClass(
+      transformBalanceInRealToCents(paymentValue),
+      message,
+      {},
+      userReciver
+    );
 
     try {
       await PaymentService.createPayment(newPayment);
+
+      navigation.navigate('SuccessTransaction');
     } catch (error) {
       console.log(error);
-    } finally {
-      console.log('Finalizou');
-      
+    } finally {      
       setPaymentLoading(false);
     }
   }
